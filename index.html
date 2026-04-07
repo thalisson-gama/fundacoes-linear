@@ -66,7 +66,7 @@
        RESET & BASE
     ============================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       font-family: var(--font-main);
       font-size: 16px;
@@ -346,6 +346,78 @@
       line-height: 1.3;
     }
     .benefit-desc { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.7; }
+
+    /* ============================================================
+       TIPOS DE ESTACAS
+    ============================================================ */
+    .stake-types {
+      padding: 100px 20px;
+      background: var(--gray-light);
+      text-align: center;
+    }
+    .stake-types .section-title { color: var(--black); }
+    .stake-types .section-subtitle { color: #555; margin: 14px auto 52px; }
+    .stake-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .stake-card {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 8px;
+      padding: 32px 24px;
+      text-align: center;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .stake-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.1);
+    }
+    .stake-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, rgba(30,42,94,0.08) 0%, rgba(198,40,40,0.08) 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+    }
+    .stake-icon svg { width: 28px; height: 28px; }
+    .stake-card h3 {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      line-height: 1.3;
+    }
+    .stake-card p {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.6;
+    }
+    .stake-card.stake-other {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--red) 100%);
+      border: none;
+    }
+    .stake-card.stake-other h3 { color: var(--white); }
+    .stake-card.stake-other p { color: rgba(255,255,255,0.75); }
+    .stake-card.stake-other .stake-icon {
+      background: rgba(255,255,255,0.15);
+    }
+    .stake-card.stake-other .stake-icon svg { stroke: white; }
+    .stake-grid-bottom {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 825px;
+      margin: 20px auto 0;
+    }
 
     /* ============================================================
        ETAPAS  - TIMELINE
@@ -932,9 +1004,12 @@
       .social-proof { gap: 16px; margin-top: 32px; padding-top: 24px; }
       .proof-number { font-size: 18px; }
       .proof-label { font-size: 10px; }
-      .how, .gallery, .testimonials, .faq, .examples, .timeline { padding: 60px 16px; }
+      .how, .gallery, .testimonials, .faq, .examples, .timeline, .stake-types { padding: 60px 16px; }
       .form-section { padding: 60px 16px; }
       .timeline-grid { grid-template-columns: repeat(2, 1fr); }
+      .stake-grid { grid-template-columns: repeat(2, 1fr); }
+      .stake-grid-bottom { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
+      .stake-grid-bottom .stake-card:last-child { grid-column: 1 / -1; }
       .benefits { grid-template-columns: 1fr; }
       .benefit-col { padding: 44px 24px; }
       .examples-grid { grid-template-columns: 1fr; max-width: 420px; }
@@ -945,6 +1020,9 @@
       .form-card { padding: 28px 20px; }
       .form-section .section-subtitle { margin-bottom: 36px; }
       .btn { padding: 14px 28px; font-size: 13px; }
+      .carousel-prev { left: 8px; }
+      .carousel-next { right: 8px; }
+      .carousel-wrapper { padding: 0 16px; }
     }
     @media (max-width: 680px) {
       .hero { min-height: auto; padding: 48px 16px 36px; }
@@ -964,6 +1042,9 @@
       .card-installment { font-size: 22px; padding: 5px 20px; }
       .benefit-text { font-size: clamp(18px, 4vw, 24px); }
       .timeline-grid { grid-template-columns: 1fr; }
+      .stake-grid { grid-template-columns: 1fr; }
+      .stake-grid-bottom { grid-template-columns: 1fr; max-width: 100%; }
+      .stake-grid-bottom .stake-card:last-child { grid-column: auto; }
       footer { padding: 48px 16px 36px; }
     }
 
@@ -1301,6 +1382,93 @@
       <p class="benefit-desc">Operadores treinados, engenheiros no campo e processos padronizados para cada tipo de solo e projeto.</p>
     </div>
 
+  </section>
+
+  <!-- ============================================================
+       TIPOS DE ESTACAS
+  ============================================================ -->
+  <section class="stake-types fade-in">
+    <div class="container">
+      <p class="section-label">Soluções em fundações</p>
+      <h2 class="section-title">Tipos de estacas que executamos</h2>
+      <p class="section-subtitle">Cada tipo de fundação atende a uma necessidade específica de solo e estrutura. Trabalhamos com as principais soluções do mercado.</p>
+
+      <div class="stake-grid">
+
+        <div class="stake-card fade-in">
+          <div class="stake-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8">
+              <path d="M12 2v20"/><path d="M8 6c0 0 4 2 8 0"/><path d="M8 10c0 0 4 2 8 0"/><path d="M8 14c0 0 4 2 8 0"/>
+            </svg>
+          </div>
+          <h3>Estaca Hélice Contínua</h3>
+          <p>Inclui hélice contínua monitorada. Alta produtividade e baixa vibração, ideal para obras urbanas e de grande porte.</p>
+        </div>
+
+        <div class="stake-card fade-in" style="transition-delay:0.05s">
+          <div class="stake-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8">
+              <rect x="9" y="2" width="6" height="20" rx="1"/><path d="M9 7h6"/><path d="M9 12h6"/><path d="M9 17h6"/>
+            </svg>
+          </div>
+          <h3>Estaca Cravada Pré-moldada</h3>
+          <p>Estacas de concreto pré-moldado cravadas por percussão. Controle de capacidade de carga por nega e repique.</p>
+        </div>
+
+        <div class="stake-card fade-in" style="transition-delay:0.1s">
+          <div class="stake-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8">
+              <path d="M8 2v20"/><path d="M16 2v20"/><path d="M8 6h8"/><path d="M8 12h8"/><path d="M8 18h8"/>
+            </svg>
+          </div>
+          <h3>Estaca Cravada Metálica</h3>
+          <p>Perfis de aço cravados por percussão. Indicada para cargas elevadas e terrenos com camadas resistentes profundas.</p>
+        </div>
+
+        <div class="stake-card fade-in" style="transition-delay:0.15s">
+          <div class="stake-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8">
+              <path d="M7 2h10"/><path d="M8 2v4"/><path d="M16 2v4"/><circle cx="12" cy="14" r="6"/><path d="M12 8v0"/>
+            </svg>
+          </div>
+          <h3>Estaca Escavada de Grande Diâmetro</h3>
+          <p>Perfuração mecânica com grande seção transversal. Para obras que exigem alta capacidade de carga por elemento.</p>
+        </div>
+
+      </div>
+
+      <div class="stake-grid-bottom">
+        <div class="stake-card fade-in" style="transition-delay:0.2s">
+          <div class="stake-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8">
+              <path d="M10 2h4v14h-4z"/><path d="M6 16c0 0 2 6 6 6s6-6 6-6"/><path d="M10 16h4"/>
+            </svg>
+          </div>
+          <h3>Estaca Franki</h3>
+          <p>Estaca de base alargada executada por cravação. Excelente desempenho em solos arenosos e com nível d'água.</p>
+        </div>
+
+        <div class="stake-card fade-in" style="transition-delay:0.25s">
+          <div class="stake-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8">
+              <path d="M12 2v20"/><circle cx="12" cy="6" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="18" r="2"/>
+            </svg>
+          </div>
+          <h3>Estaca Raiz</h3>
+          <p>Estaca de pequeno diâmetro perfurada e injetada. Ideal para reforço de fundações e terrenos de difícil acesso.</p>
+        </div>
+
+        <div class="stake-card stake-other fade-in" style="transition-delay:0.3s">
+          <div class="stake-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8">
+              <circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/>
+            </svg>
+          </div>
+          <h3>Outras Soluções</h3>
+          <p>Cada obra tem suas particularidades. Analisamos o projeto e indicamos a solução técnica mais adequada para o seu solo e estrutura.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ============================================================
